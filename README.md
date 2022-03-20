@@ -4,9 +4,12 @@ Formålet med dette projekt er at lave en app til folk der bor sammen med andre 
 
 Requirements:
 
-1. Som en bruger vil jeg kunne oprette en gruppe i systemet, for at forbinde beboeres madforbrug i en husstand med hinanden.
-2. Som en bruger vil jeg kunne administrere medlemmerne i min gruppe, for at organisere hvem der er en del af husstanden.
+1. Som en bruger vil jeg oprette en gruppe i systemet, for at forbinde beboeres madforbrug i en husstand med hinanden.
+2. Som en bruger vil jeg administrere medlemmerne i min gruppe, for at organisere hvem der er en del af husstanden.
 3. Som en bruger vil jeg logge ind i systemet, for at kunne blive identificeret blandt andre brugere.
-4. Som en bruger vil jeg kunne tilføje/fjerne enkelte varer eller hele boner, for at dokumentere mit løbende forbrug.
-5. Som en bruger vil jeg kunne se en oversigt over alle gruppemedlemmers resterende budget, for at danne mig et overblik hvor mange penge der er til rådighed.
-6. 
+4. Som en bruger vil jeg tilføje/fjerne enkelte varer eller hele boner til en forbrugsoversigt, for at dokumentere mit løbende forbrug.
+5. Som en bruger vil jeg se en oversigt over alle gruppemedlemmers resterende budget, for at danne mig et overblik hvor mange penge der er til rådighed.
+6. Som en bruger vil jeg angive en kategori for de købte varer, for at organisere det gemte data.
+7. Som en bruger vil jeg se en forbrugsoversigt over en specifik måned, for at danne overblik over mit månedlige forbrug.
+8. Som en bruger vil jeg filtere min forbrugsoversigt på bestemte kategorier, for lettere at tilgå bestemte kategorier
+9. Som en bruger vil jeg se en samlet oversigt over hvilke kategorier der bruges flest penge på, for at kunne afgøre om skal skæres på en kategori fremfor en anden.
