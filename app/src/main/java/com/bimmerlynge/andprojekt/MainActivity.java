@@ -1,10 +1,7 @@
 package com.bimmerlynge.andprojekt;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import com.bimmerlynge.andprojekt.ui.home.Group;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +11,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.bimmerlynge.andprojekt.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 

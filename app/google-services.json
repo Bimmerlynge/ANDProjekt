@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "11596756737",
+    "firebase_url": "https://andprojekt-2f098-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "andprojekt-2f098",
+    "storage_bucket": "andprojekt-2f098.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11596756737:android:1470952eac690022958d00",
+        "android_client_info": {
+          "package_name": "com.bimmerlynge.andprojekt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11596756737-ca4da0q4nloe69fe7pjqvqiikknlb7gt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bimmerlynge.andprojekt",
+            "certificate_hash": "b30e2290a20c3ab654b9dcbff448da845b1b2778"
+          }
+        },
+        {
+          "client_id": "11596756737-kova9pg37fegtv2fl91gfsjedh6ba917.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA15gWHgNeXVMf2S3UdiRjE0StJUtbkqRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11596756737-kova9pg37fegtv2fl91gfsjedh6ba917.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
