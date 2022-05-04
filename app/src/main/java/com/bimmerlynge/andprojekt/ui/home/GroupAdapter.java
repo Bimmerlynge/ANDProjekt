@@ -1,6 +1,7 @@
 package com.bimmerlynge.andprojekt.ui.home;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bimmerlynge.andprojekt.R;
@@ -38,7 +41,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull GroupAdapter.ViewHolder holder, int position) {
         holder.name.setText(groups.get(position).getName());
-        holder.remain.setText(Double.toString(groups.get(position).getRemain()));
+        holder.remain.setText(""+ groups.get(position).getRemain());
     }
 
     @Override
@@ -52,15 +55,10 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         Button addEntry;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setTag(this);
             name = itemView.findViewById(R.id.group_name);
             remain = itemView.findViewById(R.id.total_remain);
             addEntry = itemView.findViewById(R.id.addEntry);
-            addEntry.setOnClickListener(view -> {
-                Toast.makeText(itemView.getContext(), "You pressed on: " + name.getText(), Toast.LENGTH_LONG).show();
-            });
-            name.setOnClickListener(view -> {
-                Toast.makeText(itemView.getContext(), name.getText() + " has a total remain of: " + remain.getText(), Toast.LENGTH_LONG).show();
-            });
         }
     }
 

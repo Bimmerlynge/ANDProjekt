@@ -48,24 +48,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupTitle" />
 
-    <ScrollView
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/groupRemainderLabel">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/member_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="333dp" />
+    </LinearLayout>
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+
+    <Button
+        android:id="@+id/see_entries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See all entries"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.271" />
+
+    <Button
+        android:id="@+id/add_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add new member"
+        app:layout_constraintBaseline_toBaselineOf="@+id/see_entries"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/see_entries" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

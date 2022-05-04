@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class Group {
     private String name;
-    private double budget;
+    private double budgetPerUser;
     private double remain;
-    private ArrayList<User> members;
+    private ArrayList<Member> members;
     private ArrayList<Entry> entries;
+    int id;
 
 
 
-    public Group(String name, double budget) {
+    public Group(int id, String name, double budgetPerUser) {
+        this.id = id;
         this.name = name;
-        this.budget = budget;
+        this.budgetPerUser = budgetPerUser;
         remain = 0;
         members = new ArrayList<>();
         entries = new ArrayList<>();
@@ -31,11 +33,11 @@ public class Group {
         this.remain = remain;
     }
 
-    public ArrayList<User> getMembers() {
+    public ArrayList<Member> getMembers() {
         return members;
     }
 
-    public void addMember(User user){
+    public void addMember(Member user){
         members.add(user);
     }
 
@@ -44,6 +46,17 @@ public class Group {
     }
 
 
+    @Override
+    public String toString() {
+        return "Group{" +
+                "name='" + name + '\'' +
+                ", budgetPerUser=" + budgetPerUser +
+                ", remain=" + remain +
+                ", members=" + members +
+                ", entries=" + entries +
+                ", id=" + id +
+                '}';
+    }
 }
 
 

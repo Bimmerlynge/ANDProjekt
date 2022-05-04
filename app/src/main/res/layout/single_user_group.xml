@@ -20,4 +20,10 @@
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
         android:src="@drawable/piechart" />
+    <TextView
+        android:id="@+id/user_numeric_remain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TAL"
+        android:layout_marginLeft="8dp"/>
 </LinearLayout>
