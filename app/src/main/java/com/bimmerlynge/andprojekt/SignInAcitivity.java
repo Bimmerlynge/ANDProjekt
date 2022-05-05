@@ -13,8 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import com.bimmerlynge.andprojekt.persistence.SignInViewModel;
+import com.firebase.ui.auth.AuthUI;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class SignInAcitivity extends AppCompatActivity {
 
@@ -46,17 +48,17 @@ public class SignInAcitivity extends AppCompatActivity {
 
     }
 
-//    public void signIn(View v){
-//        List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                new AuthUI.IdpConfig.EmailBuilder().build(),
-//                new AuthUI.IdpConfig.GoogleBuilder().build());
-//
-//        Intent signInIntent = AuthUI.getInstance()
-//                .createSignInIntentBuilder()
-//                .setAvailableProviders(providers)
-//                .build();
-//
-//        activityResultLauncher.launch(signInIntent);
-//    }
+    public void signIn(View v){
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build();
+
+        activityResultLauncher.launch(signInIntent);
+    }
 
 }

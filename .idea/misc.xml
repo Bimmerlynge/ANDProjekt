@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mathi/AndroidStudioProjects/ANDProjekt/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mathi/AndroidStudioProjects/ANDProjekt/app/src/main/res/layout/group_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mathi/AndroidStudioProjects/ANDProjekt/app/src/main/res/layout/single_user_group.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mathi/AndroidStudioProjects/andprojekt/app/src/main/res/drawable/group_style.xml" value="0.196" />
         <entry key="..\:/Users/mathi/AndroidStudioProjects/andprojekt/app/src/main/res/layout-land/signin_activity.xml" value="0.4666666666666667" />
         <entry key="..\:/Users/mathi/AndroidStudioProjects/andprojekt/app/src/main/res/layout-port/signin_activity.xml" value="0.14722222222222223" />

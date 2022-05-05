@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
     ArrayList<Group> groups;
+    OnGroupClickListener listener;
 
     public GroupAdapter(ArrayList<Group> groups){
         this.groups = groups;
@@ -44,6 +45,10 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         holder.remain.setText(""+ groups.get(position).getRemain());
     }
 
+    public void setOnGroupClickListener(OnGroupClickListener listener){
+        this.listener = listener;
+    }
+
     @Override
     public int getItemCount() {
         return groups.size();
@@ -59,7 +64,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
             name = itemView.findViewById(R.id.group_name);
             remain = itemView.findViewById(R.id.total_remain);
             addEntry = itemView.findViewById(R.id.addEntry);
+
+            name.setOnClickListener(v->{
+                listener.onClick(groups.get(getAdapterPosition()));
+            });
         }
     }
-
+    public interface OnGroupClickListener{
+        void onClick(Group group);
+    }
 }
