@@ -25,8 +25,7 @@ public class SignInAcitivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK) {
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
+                    goToMainActivity();
                 }
                 else
                     Toast.makeText(this, "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
@@ -43,9 +42,16 @@ public class SignInAcitivity extends AppCompatActivity {
         setContentView(R.layout.signin_activity);
 
     }
+    private void goToMainActivity() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
 
     private void checkIfSignedIn(){
-
+        viewModel.getCurrentUser().observe(this, user -> {
+            if (user != null)
+                goToMainActivity();
+        });
     }
 
     public void signIn(View v){

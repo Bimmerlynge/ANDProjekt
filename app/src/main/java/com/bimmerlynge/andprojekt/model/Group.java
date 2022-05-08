@@ -12,8 +12,8 @@ public class Group {
 
 
 
-    public Group(int id, String name, double budgetPerUser) {
-        this.id = id;
+    public Group(String name, double budgetPerUser) {
+        this.id = 0;
         this.name = name;
         this.budgetPerUser = budgetPerUser;
         remain = 0;

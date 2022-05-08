@@ -10,15 +10,16 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignInViewModel extends AndroidViewModel {
 
-    private FirebaseUser user;
 
-
+    private UserRepository userRepository;
     public SignInViewModel(@NonNull Application application) {
+
         super(application);
+        userRepository = UserRepository.getInstance(application);
     }
 
 
-//    public LiveData<FirebaseUser> getCurrentUser(){
-//        return user;
-//    }
+    public LiveData<FirebaseUser> getCurrentUser(){
+        return userRepository.getCurrentUser();
+    }
 }

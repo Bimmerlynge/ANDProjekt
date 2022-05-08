@@ -23,8 +23,8 @@ import java.util.ArrayList;
 
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
-    ArrayList<Group> groups;
-    OnGroupClickListener listener;
+    private ArrayList<Group> groups;
+    private OnGroupClickListener listener;
 
     public GroupAdapter(ArrayList<Group> groups){
         this.groups = groups;
@@ -66,11 +66,17 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
             addEntry = itemView.findViewById(R.id.addEntry);
 
             name.setOnClickListener(v->{
-                listener.onClick(groups.get(getAdapterPosition()));
+                listener.onGroupClick(groups.get(getAdapterPosition()));
+            });
+            addEntry.setOnClickListener(v-> {
+                listener.onAddEntry(groups.get(getAdapterPosition()));
             });
         }
     }
     public interface OnGroupClickListener{
-        void onClick(Group group);
+        void onGroupClick(Group group);
+        void onAddEntry(Group group);
     }
+
+
 }

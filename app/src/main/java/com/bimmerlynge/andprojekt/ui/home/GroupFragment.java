@@ -10,11 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bimmerlynge.andprojekt.R;
@@ -22,7 +20,7 @@ import com.bimmerlynge.andprojekt.model.Group;
 
 public class GroupFragment extends Fragment {
 
-    GroupViewModel groupViewModel;
+    HomeViewModel homeViewModel;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -30,9 +28,9 @@ public class GroupFragment extends Fragment {
 
 
 
-        groupViewModel= new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
+        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
 
-        Group toSet = groupViewModel.getCurrentGroup();
+        Group toSet = homeViewModel.getCurrentGroup();
         TextView title = view.findViewById(R.id.groupTitle);
         TextView groupRemainder = view.findViewById(R.id.groupRemainder);
         RecyclerView listView = view.findViewById(R.id.member_list);
@@ -47,8 +45,6 @@ public class GroupFragment extends Fragment {
 
 
 
-
-
         return view;
     }
 
@@ -56,9 +52,13 @@ public class GroupFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        groupViewModel.setCurrentGroup(null);
+        homeViewModel.setCurrentGroup(null);
     }
 
-
-
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        if (item.getItemId() == androidx.navigation.ui.R.id.home)
+//            getActivity().onBackPressed();
+//        return super.onOptionsItemSelected(item);
+//    }
 }

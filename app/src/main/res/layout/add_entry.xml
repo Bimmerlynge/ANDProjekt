@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.home.AddEntryFragment">
 
     <Button
         android:id="@+id/addentry_addbutton"
@@ -49,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addentry_price">
 
         <RadioGroup
+            android:id="@+id/addentry_radiogroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -61,7 +63,8 @@
                 android:button="@null"
                 android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
                 android:gravity="center_horizontal|bottom"
-                android:text="RadioButton" />
+                android:text="Bon"
+                android:checked="true"/>
 
             <RadioButton
                 android:id="@+id/radioButton2"
@@ -103,9 +106,10 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Price"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addentry_name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
     android:orientation="vertical">
-
+    <TextView
+        android:id="@+id/welcomeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hej"
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
@@ -17,11 +24,12 @@
 
 
         <Button
+            android:id="@+id/createGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create new group"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginBottom="?actionBarSize"/>
 
 
 
