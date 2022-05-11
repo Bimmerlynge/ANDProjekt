@@ -64,25 +64,14 @@
 
 
     <Button
-        android:id="@+id/see_entries"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="See all entries"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.271"
-        android:layout_marginBottom="?actionBarSize"/>
-
-    <Button
         android:id="@+id/add_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add new member"
-        app:layout_constraintBaseline_toBaselineOf="@+id/see_entries"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/see_entries" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.193" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

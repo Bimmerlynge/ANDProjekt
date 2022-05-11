@@ -46,6 +46,10 @@ public class CreateGroupFragment extends Fragment {
     }
 
     private void createGroup(){
-        viewModel.CreateGroup(groupName.getText().toString(), budgetPrPerson.getText().toString());
+        String name = groupName.getText().toString();
+        String budgetPrPersonString = budgetPrPerson.getText().toString();
+        viewModel.CreateGroup(name, budgetPrPersonString);
+
+
     }
 }

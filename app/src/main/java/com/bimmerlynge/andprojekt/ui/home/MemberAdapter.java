@@ -10,15 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bimmerlynge.andprojekt.R;
-import com.bimmerlynge.andprojekt.model.Member;
+import com.bimmerlynge.andprojekt.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
-    ArrayList<Member> members;
+    private List<User> members;
 
-    public MemberAdapter(ArrayList<Member> members) {
-        this.members = members;
+    public MemberAdapter() { members = new ArrayList<>();
+    }
+
+    public void setMembers(List<User> users){
+        members = users;
+        notifyDataSetChanged();
     }
 
     @NonNull

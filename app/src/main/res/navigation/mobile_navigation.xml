@@ -14,9 +14,6 @@
             android:id="@+id/action_navigation_home_to_groupFragment"
             app:destination="@id/groupFragment" />
         <action
-            android:id="@+id/action_navigation_home_to_addEntryFragment"
-            app:destination="@id/addEntryFragment" />
-        <action
             android:id="@+id/action_navigation_home_to_createGroupFragment"
             app:destination="@id/createGroupFragment" />
     </fragment>
@@ -25,7 +22,11 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.bimmerlynge.andprojekt.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_addEntryFragment"
+            app:destination="@id/addEntryFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"

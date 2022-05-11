@@ -2,7 +2,9 @@ package com.bimmerlynge.andprojekt.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,8 +22,6 @@ import com.bimmerlynge.andprojekt.SignInAcitivity;
 import com.bimmerlynge.andprojekt.databinding.FragmentHomeBinding;
 import com.bimmerlynge.andprojekt.model.Group;
 
-import java.util.ArrayList;
-
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
@@ -37,35 +37,58 @@ public class HomeFragment extends Fragment {
         viewModel.init();
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
         welcomeLabel = root.findViewById(R.id.welcomeLabel);
         checkIfSignedIn();
+
+        viewModel.getCurrentGroup().observe(getViewLifecycleOwner(), group -> {
+            if (group != null) {
+                viewModel.setCurrentGroup(group);
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_groupFragment);
+            }
+        });
+
+
         createGroup = root.findViewById(R.id.createGroup);
+
+
         createGroup.setOnClickListener(view -> {
             Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_createGroupFragment);
         });
 
-        rView = root.findViewById(R.id.listView);
-        rView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        rView.hasFixedSize();
-
-        //ArrayList<Group> list = homeViewModel.getAllGroups();
-
-        //GroupAdapter adapter = new GroupAdapter(list);
+//        rView = root.findViewById(R.id.listView);
+//        rView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+//        rView.hasFixedSize();
+//
+//
+//        GroupAdapter adapter = new GroupAdapter();
 //        rView.setAdapter(adapter);
+
+//        viewModel.getAllGroups().observe(getViewLifecycleOwner(), groups -> {
+//            adapter.setGroups(groups);
+//        });
+
+
+
 //        adapter.setOnGroupClickListener(new GroupAdapter.OnGroupClickListener() {
 //            @Override
 //            public void onGroupClick(Group group) {
-//                homeViewModel.setCurrentGroup(group);
+//                viewModel.setCurrentGroup(group);
 //                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_groupFragment);
 //            }
 //            @Override
 //            public void onAddEntry(Group group) {
+//                viewModel.setCurrentGroup(group);
 //                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_addEntryFragment);
-//
 //            }
 //        });
 
         return root;
+    }
+
+    private void checkIfHasGroup(){
+        if (viewModel.getGroup() != null)
+            Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_groupFragment);
     }
 
     private void checkIfSignedIn() {
