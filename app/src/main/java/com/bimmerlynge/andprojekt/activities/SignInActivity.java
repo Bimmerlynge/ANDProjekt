@@ -1,8 +1,7 @@
-package com.bimmerlynge.andprojekt;
+package com.bimmerlynge.andprojekt.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,15 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 
-import com.bimmerlynge.andprojekt.persistence.SignInViewModel;
+import com.bimmerlynge.andprojekt.R;
+import com.bimmerlynge.andprojekt.viewModels.SignInViewModel;
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class SignInAcitivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     private SignInViewModel viewModel;
 
@@ -34,16 +32,14 @@ public class SignInAcitivity extends AppCompatActivity {
                     Toast.makeText(this, "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
             });
 
-
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(SignInViewModel.class);
         checkIfSignedIn();
         setContentView(R.layout.signin_activity);
-        signIn();
+        // Automatically starting the log ing intent causes some issues
+        //signIn();
     }
     private void goToMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
@@ -52,12 +48,14 @@ public class SignInAcitivity extends AppCompatActivity {
 
     private void checkIfSignedIn(){
         viewModel.getCurrentUser().observe(this, user -> {
-            if (user != null)
+            if (user != null) {
                 goToMainActivity();
+            }
         });
     }
 
-    public void signIn(){
+
+    public void signIn(View view) {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -69,17 +67,4 @@ public class SignInAcitivity extends AppCompatActivity {
 
         activityResultLauncher.launch(signInIntent);
     }
-
-    public void signOut() {
-
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    public void onComplete( Task<Void> task) {
-                        Log.i("mig", "hallo");
-                    }
-                });
-
-    }
-
 }

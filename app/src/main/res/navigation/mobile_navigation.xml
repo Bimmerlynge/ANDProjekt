@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.bimmerlynge.andprojekt.ui.home.HomeFragment"
+        android:name="com.bimmerlynge.andprojekt.fragments.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.bimmerlynge.andprojekt.ui.dashboard.DashboardFragment"
+        android:name="com.bimmerlynge.andprojekt.fragments.DashboardFragment"
         android:label="@string/title_my_overview"
 
         tools:layout="@layout/fragment_dashboard" >
@@ -29,12 +29,12 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.bimmerlynge.andprojekt.ui.profile.ProfileFragment"
+        android:name="com.bimmerlynge.andprojekt.fragments.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/groupFragment"
-        android:name="com.bimmerlynge.andprojekt.ui.home.GroupFragment"
+        android:name="com.bimmerlynge.andprojekt.fragments.GroupFragment"
         android:label="@string/title_group_overview"
         tools:layout="@layout/group_fragment" >
         <action
@@ -47,12 +47,12 @@
     </fragment>
     <fragment
         android:id="@+id/addEntryFragment"
-        android:name="com.bimmerlynge.andprojekt.ui.home.AddEntryFragment"
+        android:name="com.bimmerlynge.andprojekt.fragments.AddEntryFragment"
         android:label="@string/add_entry"
         tools:layout="@layout/add_entry"/>
     <fragment
         android:id="@+id/statsFragment"
-        android:name="com.bimmerlynge.andprojekt.ui.home.StatsFragment"
+        android:name="com.bimmerlynge.andprojekt.fragments.StatsFragment"
         android:label="@string/monthly_overview"
         tools:layout="@layout/piechart_fragment" />
 </navigation>

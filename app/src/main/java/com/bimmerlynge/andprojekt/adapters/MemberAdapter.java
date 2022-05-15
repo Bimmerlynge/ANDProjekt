@@ -1,4 +1,4 @@
-package com.bimmerlynge.andprojekt.ui.home;
+package com.bimmerlynge.andprojekt.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;

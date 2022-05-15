@@ -1,4 +1,4 @@
-package com.bimmerlynge.andprojekt.ui.dashboard;
+package com.bimmerlynge.andprojekt.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

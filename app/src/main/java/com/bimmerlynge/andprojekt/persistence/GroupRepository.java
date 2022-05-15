@@ -101,7 +101,6 @@ public class GroupRepository {
     public LiveData<Group> getCurrentGroup(){
         MutableLiveData<Group> group = new MutableLiveData<>();
         final Group[] buffer = new Group[1];
-        String userId = FirebaseAuth.getInstance().getUid();
         DatabaseReference ref = database.getReference().child("Groups");
         ref.addValueEventListener(new ValueEventListener() {
             @Override

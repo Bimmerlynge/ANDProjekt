@@ -1,4 +1,4 @@
-package com.bimmerlynge.andprojekt.ui.profile;
+package com.bimmerlynge.andprojekt.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bimmerlynge.andprojekt.R;
 import com.bimmerlynge.andprojekt.databinding.FragmentProfileBinding;
+import com.bimmerlynge.andprojekt.viewModels.ProfileViewModel;
 
 public class ProfileFragment extends Fragment {
 

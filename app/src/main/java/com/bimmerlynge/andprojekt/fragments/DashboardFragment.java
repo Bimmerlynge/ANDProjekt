@@ -1,8 +1,6 @@
-package com.bimmerlynge.andprojekt.ui.dashboard;
+package com.bimmerlynge.andprojekt.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +11,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bimmerlynge.andprojekt.R;
-import com.bimmerlynge.andprojekt.SignInAcitivity;
-import com.bimmerlynge.andprojekt.databinding.FragmentDashboardBinding;
-import com.bimmerlynge.andprojekt.ui.home.AddEntryFragment;
-import com.bimmerlynge.andprojekt.ui.home.HomeViewModel;
 
-import org.w3c.dom.Text;
+import com.bimmerlynge.andprojekt.databinding.FragmentDashboardBinding;
+import com.bimmerlynge.andprojekt.adapters.EntryAdapter;
+import com.bimmerlynge.andprojekt.viewModels.GroupViewModel;
 
 public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
-    private HomeViewModel viewModel;
+    private GroupViewModel viewModel;
     private RecyclerView entries;
     private TextView title;
     private Button addEntry;
@@ -38,7 +33,7 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         viewModel =
-                new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+                new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

@@ -1,8 +1,7 @@
-package com.bimmerlynge.andprojekt.ui.home;
+package com.bimmerlynge.andprojekt.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bimmerlynge.andprojekt.R;
 import com.bimmerlynge.andprojekt.model.Entry;
+import com.bimmerlynge.andprojekt.viewModels.GroupViewModel;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -29,12 +29,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class StatsFragment extends Fragment {
-    HomeViewModel viewModel;
+    GroupViewModel viewModel;
     SeekBar seekBar;
     TextView title;
     BarChart barChart;
@@ -49,7 +47,7 @@ public class StatsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.piechart_fragment, container, false);
-        viewModel =  new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        viewModel =  new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
         viewModel.init();
 
         title = view.findViewById(R.id.barchart_title);

@@ -1,4 +1,4 @@
-package com.bimmerlynge.andprojekt.ui.dashboard;
+package com.bimmerlynge.andprojekt.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
