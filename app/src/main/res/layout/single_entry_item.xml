@@ -3,37 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:paddingBottom="12dp">
 
 
     <TextView
         android:id="@+id/entryName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="20sp"
+        style="@style/tabledata"
+        android:layout_weight="0.35"
         android:text="ItemName" />
     <TextView
         android:id="@+id/entryCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="20sp"
-        android:gravity="left"
+        style="@style/tabledata"
+        android:layout_weight="0.25"
         android:text="Category" />
     <TextView
         android:id="@+id/entryPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="20sp"
+        style="@style/tabledata"
+        android:layout_weight="0.15"
         android:text="Price" />
     <TextView
         android:id="@+id/entryDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="20sp"
+        style="@style/tabledata"
+        android:layout_weight="0.25"
         android:text="Date" />
 
 </LinearLayout>

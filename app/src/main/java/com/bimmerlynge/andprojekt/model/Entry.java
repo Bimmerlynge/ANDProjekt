@@ -3,14 +3,14 @@ package com.bimmerlynge.andprojekt.model;
 import com.google.firebase.database.ServerValue;
 
 public class Entry {
-    private long date;
+    private String date;
     private String itemName;
     private double itemPrice;
     private String itemCategory;
 
     public Entry(){}
 
-    public Entry(String itemName, double itemPrice, String itemCategory, long date) {
+    public Entry(String itemName, double itemPrice, String itemCategory, String date) {
         this.date = date;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -18,11 +18,11 @@ public class Entry {
     }
 
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

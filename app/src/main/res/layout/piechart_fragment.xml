@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".ui.home.StatsFragment"
+    style="@style/MainWrapper">
+    <TextView
+        android:id="@+id/barchart_title"
+        style="@style/Title"
+        />
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        style="@style/MySeekBar"
+        android:thumbTint="@color/thumb_color"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/FancyBox"
+        >
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            />
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

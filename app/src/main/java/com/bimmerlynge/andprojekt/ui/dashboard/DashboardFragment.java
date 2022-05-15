@@ -14,12 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bimmerlynge.andprojekt.R;
 import com.bimmerlynge.andprojekt.SignInAcitivity;
 import com.bimmerlynge.andprojekt.databinding.FragmentDashboardBinding;
+import com.bimmerlynge.andprojekt.ui.home.AddEntryFragment;
 import com.bimmerlynge.andprojekt.ui.home.HomeViewModel;
 
 import org.w3c.dom.Text;
@@ -31,6 +33,7 @@ public class DashboardFragment extends Fragment {
     private RecyclerView entries;
     private TextView title;
     private Button addEntry;
+    EntryAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,23 +48,22 @@ public class DashboardFragment extends Fragment {
         addEntry = root.findViewById(R.id.dashBord_addEntry);
 
         addEntry.setOnClickListener(view -> {
-            Navigation.findNavController(getView()).navigate(R.id.action_navigation_dashboard_to_addEntryFragment);
+            //Navigation.findNavController(getView()).navigate(R.id.action_navigation_dashboard_to_addEntryFragment);
+            NavHostFragment.findNavController(DashboardFragment.this).navigate(R.id.action_navigation_dashboard_to_addEntryFragment);
         });
 
         entries.setLayoutManager(new LinearLayoutManager(root.getContext()));
         entries.hasFixedSize();
 
-        EntryAdapter adapter = new EntryAdapter();
+        adapter = new EntryAdapter();
         entries.setAdapter(adapter);
-        try {
-        viewModel.getEntriesByUser().observe(getViewLifecycleOwner(), entries -> {
-            adapter.setEntries(entries);
-        });
-        } catch (NullPointerException e){
-                Toast.makeText(getContext(), "No group detected", Toast.LENGTH_LONG).show();
-                addEntry.setEnabled(false);
-                title.setText("Must be part of a group to use this page");
-        }
+
+        checkIfHasGroup();
+
+
+
+
+
 
 
 
@@ -76,9 +78,14 @@ public class DashboardFragment extends Fragment {
         binding = null;
     }
 
-//    private void checkIfHasGroup() {
-//        if (viewModel.getGroup() == null)
-//            startDashBoardNoGroup();
-//    }
+    private void checkIfHasGroup() {
+        if (viewModel.getGroup() != null)
+            viewModel.getEntriesByUser().observe(getViewLifecycleOwner(), entries -> {
+                adapter.setEntries(entries);
+            });
+        else {Toast.makeText(getContext(), "No group detected", Toast.LENGTH_LONG).show();
+            addEntry.setEnabled(false);
+            title.setText("Must be part of a group to use this page");}
+    }
 
 }

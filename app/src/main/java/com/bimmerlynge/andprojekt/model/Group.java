@@ -1,13 +1,19 @@
 package com.bimmerlynge.andprojekt.model;
 
+import android.util.Log;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Group {
     private String name;
     private String id;
+    private int yearMonth;
     private double budgetPerUser;
     private double remain;
+    private double remainLastMonth;
     private List<User> members;
     //private List<Entry> entries;
 
@@ -22,21 +28,44 @@ public class Group {
 //        this.entries = entries;
 //    }
 
-    public Group(String name, double budgetPerUser) {
+    public Group(String name, double budgetPerUser, int yearMonth) {
         this.name = name;
         this.budgetPerUser = budgetPerUser;
         remain = budgetPerUser;
         members = new ArrayList<>();
+        this.yearMonth = yearMonth;
     }
 
-    public Group(String name, String id, double budgetPerUser, double remain, List<User> members) {
+    public Group(String name, String id, double budgetPerUser, double remain, List<User> members, int yearMonth) {
         this.name = name;
         this.id = id;
         this.budgetPerUser = budgetPerUser;
         this.remain = remain;
         this.members = members;
+        this.yearMonth = yearMonth;
 
     }
+    public void newMonth(){
+        remainLastMonth = remain;
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat dFormat = new SimpleDateFormat("yyyyMM");
+        String string = dFormat.format(date);
+
+        yearMonth = Integer.parseInt(string);
+        for (User member : members) {
+            member.setRemain(budgetPerUser);
+        }
+        remain = budgetPerUser*members.size();
+    }
+
+    public int getYearMonth() {
+        return yearMonth;
+    }
+
+    public void setYearMonth(int yearMonth) {
+        this.yearMonth = yearMonth;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

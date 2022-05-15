@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bimmerlynge.andprojekt.persistence.SignInViewModel;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +43,7 @@ public class SignInAcitivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(SignInViewModel.class);
         checkIfSignedIn();
         setContentView(R.layout.signin_activity);
-
+        signIn();
     }
     private void goToMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
@@ -55,7 +57,7 @@ public class SignInAcitivity extends AppCompatActivity {
         });
     }
 
-    public void signIn(View v){
+    public void signIn(){
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -66,6 +68,18 @@ public class SignInAcitivity extends AppCompatActivity {
                 .build();
 
         activityResultLauncher.launch(signInIntent);
+    }
+
+    public void signOut() {
+
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete( Task<Void> task) {
+                        Log.i("mig", "hallo");
+                    }
+                });
+
     }
 
 }

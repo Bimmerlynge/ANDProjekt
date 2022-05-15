@@ -3,6 +3,7 @@ package com.bimmerlynge.andprojekt.ui.home;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
@@ -14,6 +15,8 @@ import com.bimmerlynge.andprojekt.persistence.GroupRepository;
 import com.bimmerlynge.andprojekt.persistence.UserRepository;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class HomeViewModel extends AndroidViewModel {
@@ -22,6 +25,7 @@ public class HomeViewModel extends AndroidViewModel {
     private UserRepository userRepository;
     private GroupRepository groupRepository;
     private EntryRepository entryRepository;
+    private Toolbar toolbar;
     //private ArrayList<LiveData<Group>> groups;
 
 
@@ -40,14 +44,20 @@ public class HomeViewModel extends AndroidViewModel {
         entryRepository.init();
     }
 
+    public void setToolbar(Toolbar t){
+        toolbar = t;
+    }
+
     public LiveData<FirebaseUser> getCurrentUser(){
         return userRepository.getCurrentUser();
     }
 
     public void addNewEntry(String itemName, double itemPrice, String category){
-        String userId = getCurrentUser().getValue().getUid();
         long todayLong = System.currentTimeMillis();
-        Entry newEntry = new Entry(itemName, itemPrice, category, todayLong);
+        Date date = new Date(todayLong);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = format.format(date);
+        Entry newEntry = new Entry(itemName, itemPrice, category, dateString);
         entryRepository.addNewEntry(newEntry);
     }
 
@@ -57,11 +67,15 @@ public class HomeViewModel extends AndroidViewModel {
         groupRepository.setGroup(group);
     }
 
+
+
     public void CreateGroup(String groupName, String budgetPrPerson){
         if (!checkCreateGroupInput(groupName,budgetPrPerson))
             return;
 
-        Group toCreate = new Group(groupName, Double.parseDouble(budgetPrPerson));
+
+
+        Group toCreate = new Group(groupName, Double.parseDouble(budgetPrPerson), 202204);
 
         FirebaseUser currentUser = getCurrentUser().getValue();
         User creator = new User(currentUser.getUid(), currentUser.getDisplayName(), toCreate.getBudgetPerUser());
@@ -74,9 +88,6 @@ public class HomeViewModel extends AndroidViewModel {
         return !groupName.trim().isEmpty() && !budgetPrPerson.trim().isEmpty();
     }
 
-//    public LiveData<List<Group>> getGroups(){
-//        return groupRepository.getGroups();
-//    }
 
 
     public LiveData<Group> getCurrentGroup(){
@@ -85,27 +96,53 @@ public class HomeViewModel extends AndroidViewModel {
 
     public void signOut(){userRepository.signOut();}
 
-//    public LiveData<List<Group>> getAllGroups() {
-//        return groupRepository.getGroups();
-//    }
+
 
     public Group getGroup() {
         return currentGroup;
     }
 
     public LiveData<List<Entry>> getEntriesByUser() throws NullPointerException {
-        return entryRepository.getEntries();
+        //entryRepository.getEntries();
+
+        return entryRepository.getThisMonthsEntries();
+    }
+
+    public LiveData<List<Entry>> getGroupEntriesThisMonth(){
+        return entryRepository.getGroupEntriesThisMonth();
+    }
+
+    public LiveData<List<Entry>> getGroupEntriesLastMonth() {
+        return entryRepository.getGroupEntriesLastMonth();
     }
 
     public void addUserToGroup(String id, String name) {
         User user = new User(id, name, currentGroup.getBudgetPerUser());
         currentGroup.addMember(user);
-        groupRepository.addUserToGroup(currentGroup);
+        groupRepository.updateGroupData(currentGroup);
     }
 
     public LiveData<Group> getGroupUpdates() {
         return groupRepository.getGroupUpdates();
     }
+
+    public void newMonth() {
+        currentGroup.newMonth();
+        groupRepository.updateGroupData(currentGroup);
+    }
+
+    public LiveData<List<Entry>> getEntriesByGroup() {
+        return entryRepository.getAllEntries();
+    }
+
+    public Toolbar getToolBar() {
+        return toolbar;
+    }
+
+    public LiveData<List<Entry>> getGroupEntriesTwoAgo() {
+        return entryRepository.getGroupEntriesTwoMonthsAgo();
+    }
+
 
 //    public LiveData<List<Entry>> listenForEntryChanges() {
 //       return groupRepository.getGroupEntries();

@@ -12,16 +12,15 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_groupFragment"
-            app:destination="@id/groupFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_createGroupFragment"
-            app:destination="@id/createGroupFragment" />
+            app:destination="@id/groupFragment"
+            />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.bimmerlynge.andprojekt.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_my_overview"
+
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_navigation_dashboard_to_addEntryFragment"
@@ -31,26 +30,29 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.bimmerlynge.andprojekt.ui.profile.ProfileFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/groupFragment"
         android:name="com.bimmerlynge.andprojekt.ui.home.GroupFragment"
-        android:label="group_fragment"
+        android:label="@string/title_group_overview"
         tools:layout="@layout/group_fragment" >
         <action
             android:id="@+id/action_groupFragment_to_navigation_home"
             app:destination="@id/navigation_home"
             app:popUpTo="@id/navigation_home" />
+        <action
+            android:id="@+id/action_groupFragment_to_statsFragment"
+            app:destination="@id/statsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEntryFragment"
         android:name="com.bimmerlynge.andprojekt.ui.home.AddEntryFragment"
-        android:label="AddEntryFragment"
+        android:label="@string/add_entry"
         tools:layout="@layout/add_entry"/>
     <fragment
-        android:id="@+id/createGroupFragment"
-        android:name="com.bimmerlynge.andprojekt.ui.home.CreateGroupFragment"
-        android:label="fragment_create_group"
-        tools:layout="@layout/fragment_create_group" />
+        android:id="@+id/statsFragment"
+        android:name="com.bimmerlynge.andprojekt.ui.home.StatsFragment"
+        android:label="@string/monthly_overview"
+        tools:layout="@layout/piechart_fragment" />
 </navigation>

@@ -2,127 +2,128 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.AddEntryFragment"
+    style="@style/MainWrapper"
+
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    tools:context=".ui.home.AddEntryFragment"
+    >
 
-    <EditText
-        android:id="@+id/addentry_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Price"
-        android:inputType="numberDecimal"
+    <TextView
+        android:id="@+id/addentry_title"
+        style="@style/Title"
+        android:text="@string/add_entry"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addentry_name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        style="@style/FancyBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addentry_title">
+
+        <EditText
+            android:id="@+id/addentry_name"
+            style="@style/myedittext"
+            android:hint="@string/itemhint"
+            android:layout_marginTop="30dp"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/addentry_title" />
+
+        <EditText
+            android:id="@+id/addentry_price"
+            style="@style/myedittext"
+            android:hint="@string/pricehint"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="32dp"
+             />
+
+
+        <RadioGroup
+            android:id="@+id/addentry_rg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/radioButton8"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                style="@style/myradio"
+                android:text="@string/meat"
+                android:tag="Meat"/>
+
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                style="@style/myradio"
+                android:text="@string/veggies"
+                android:tag="Veggies"/>
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                style="@style/myradio"
+                android:text="@string/fruit"
+                android:tag="Fruit"/>
+
+            <RadioButton
+                android:id="@+id/radioButton7"
+                style="@style/myradio"
+                android:text="@string/deli"
+                android:tag="Deli"
+                />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/addentry_rg2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                style="@style/myradio"
+                android:text="@string/grains"
+                android:tag="Grains"/>
+
+            <RadioButton
+                android:id="@+id/radioButton5"
+                style="@style/myradio"
+                android:text="@string/dairy"
+                android:tag="Dairy"/>
+
+            <RadioButton
+                android:id="@+id/radioButton6"
+                style="@style/myradio"
+                android:text="@string/frozen"
+                android:tag="Frozen"/>
+
+            <RadioButton
+                android:id="@+id/radioButton8"
+                style="@style/myradio"
+                android:checked="true"
+                android:text="@string/other"
+                android:tag="Other"/>
+        </RadioGroup>
+    </LinearLayout>
 
     <Button
         android:id="@+id/addentry_addbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <EditText
-        android:id="@+id/addentry_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Item"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addentry_title" />
-
-    <TextView
-        android:id="@+id/addentry_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add new entry"
-        android:textSize="30sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/addentry_price">
-
-        <RadioGroup
-            android:id="@+id/addentry_radiogroup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radioButton1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
-                android:gravity="center_horizontal|bottom"
-                android:text="Other"
-                android:checked="true"/>
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
-                android:gravity="center_horizontal|bottom"
-                android:text="Meat" />
-
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
-                android:gravity="center_horizontal|bottom"
-                android:text="Vegetables" />
-
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
-                android:gravity="center_horizontal|bottom"
-                android:text="Carbos" />
-            <RadioButton
-                android:id="@+id/radioButton5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
-                android:gravity="center_horizontal|bottom"
-                android:text="Dairy"/>
-        </RadioGroup>
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

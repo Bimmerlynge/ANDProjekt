@@ -4,26 +4,30 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center"
+    android:layout_marginBottom="8dp"
     >
 
     <TextView
         android:id="@+id/name_of_user"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
         android:gravity="center"
+        android:layout_marginLeft="8dp"
+        style="@style/TextStyle"
         android:text="NavnPåPerson" />
+    <TextView
+        android:id="@+id/user_numeric_remain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="204"
+        android:layout_marginLeft="8dp"
+        style="@style/TextStyle"/>
 
     <ImageView
         android:id="@+id/user_group_remain"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="16dp"
-        android:src="@drawable/piechart" />
-    <TextView
-        android:id="@+id/user_numeric_remain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TAL"
-        android:layout_marginLeft="8dp"/>
+        android:src="@drawable/ic_budget_full" />
+
 </LinearLayout>

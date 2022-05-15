@@ -21,7 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class GroupRepository {
@@ -106,9 +108,10 @@ public class GroupRepository {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Group data = child.getValue(Group.class);
-                    if (data != null)
+
+                    if (data != null){
                         data.setId(child.getKey());
-                        updateGroup(data);
+                        updateGroup(data);}
                     if (checkIfUserIsInGroup(userId, data))
                         //group.postValue(data);
 
@@ -127,6 +130,8 @@ public class GroupRepository {
 
         return group;
     }
+
+
 
     private void updateGroup(Group group){
         int remain = 0;
@@ -153,7 +158,7 @@ public class GroupRepository {
 
     }
 
-    public void addUserToGroup(Group group) {
+    public void updateGroupData(Group group) {
         updateGroup(group);
         DatabaseReference ref = database.getReference().child("Groups").child(group.getId());
         ref.setValue(group);
