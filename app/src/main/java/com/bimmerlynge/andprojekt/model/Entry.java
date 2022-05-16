@@ -1,6 +1,5 @@
 package com.bimmerlynge.andprojekt.model;
 
-import com.google.firebase.database.ServerValue;
 
 public class Entry {
     private String date;
@@ -22,31 +21,28 @@ public class Entry {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public String getItemName() {
         return itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
+//    public void setItemName(String itemName) {
+//        this.itemName = itemName;
+//    }
 
     public double getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(double itemPrice) {
-        this.itemPrice = itemPrice;
-    }
+//    public void setItemPrice(double itemPrice) {
+//        this.itemPrice = itemPrice;
+//    }
 
     public String getItemCategory() {
         return itemCategory;
     }
 
-    public void setItemCategory(String itemCategory) {
-        this.itemCategory = itemCategory;
-    }
+//    public void setItemCategory(String itemCategory) {
+//        this.itemCategory = itemCategory;
+//    }
 }

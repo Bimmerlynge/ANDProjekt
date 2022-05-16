@@ -76,13 +76,17 @@ public class DashboardFragment extends Fragment {
     }
 
     private void checkIfHasGroup() {
-        if (viewModel.getGroup() != null) {
+        if (viewModel.getGroup() == null) {
             addEntry.setEnabled(false);
             viewModel.getCurrentGroup().observe(getViewLifecycleOwner(), group -> {
                 viewModel.setCurrentGroup(group);
                 addEntry.setEnabled(false);
             });
+            return;
         }
+        entryViewModel.getEntriesByUser().observe(getViewLifecycleOwner(), list -> {
+            adapter.setEntries(list);
+        });
     }
 
 }

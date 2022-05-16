@@ -40,32 +40,29 @@ public class HomeFragment extends Fragment {
     private Button createButton;
     private EditText groupName, budgetPrPerson;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         root = binding.getRoot();
-
-        viewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
-        //signInViewModel = new ViewModelProvider(requireActivity()).get(SignInViewModel.class);
-
-
+        setupViews();
         init();
 
         return root;
     }
 
-    private void init(){
-        welcomeLabel = root.findViewById(R.id.welcomeLabel);
-        createGroup = root.findViewById(R.id.createGroup);
-
+    private void init() {
+        viewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
         viewModel.init();
 
         checkForGroup();
-
         createGroup.setOnClickListener(view -> {
             createNewGroupDialog();
         });
 
+    }
+
+    private void setupViews() {
+        welcomeLabel = root.findViewById(R.id.welcomeLabel);
+        createGroup = root.findViewById(R.id.createGroup);
     }
 
 

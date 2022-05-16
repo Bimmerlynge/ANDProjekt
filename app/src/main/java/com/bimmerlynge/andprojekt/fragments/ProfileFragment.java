@@ -13,38 +13,41 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bimmerlynge.andprojekt.R;
 import com.bimmerlynge.andprojekt.databinding.FragmentProfileBinding;
-import com.bimmerlynge.andprojekt.viewModels.ProfileViewModel;
+import com.bimmerlynge.andprojekt.viewModels.SignInViewModel;
 
 public class ProfileFragment extends Fragment {
-
+    private View root;
     private FragmentProfileBinding binding;
-    private ProfileViewModel viewModel;
+    private SignInViewModel viewModel;
 
     private EditText displayName, id;
     private Button saveChanges;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        viewModel =
-                new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        displayName = root.findViewById(R.id.profile_displayName);
+        root = binding.getRoot();
+        setupViews();
+        init();
+
+        return root;
+    }
+    private void init(){
+        viewModel = new ViewModelProvider(requireActivity()).get(SignInViewModel.class);
         displayName.setText(viewModel.getDisplayName());
+        id.setEnabled(false);
+        id.setText(viewModel.getUserId());
+        createSaveChangesButton();
+    }
+    private void setupViews(){
+        displayName = root.findViewById(R.id.profile_displayName);
         saveChanges = root.findViewById(R.id.profile_saveChanges);
+        id = root.findViewById(R.id.profileId);
+    }
+    private void createSaveChangesButton(){
         saveChanges.setOnClickListener(view -> {
             String name = displayName.getText().toString();
             viewModel.setDisplayName(name);
         });
-        id = root.findViewById(R.id.profileId);
-        id.setEnabled(false);
-        id.setText(viewModel.getUserId());
-
-
-
-
-        return root;
     }
 
     @Override

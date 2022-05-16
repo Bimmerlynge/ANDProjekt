@@ -45,4 +45,5 @@
     <string name="category">Kategori</string>
     <string name="price">Pris</string>
     <string name="date">Dato</string>
+    <string name="my_month">Min Måned</string>
 </resources>

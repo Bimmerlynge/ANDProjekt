@@ -13,6 +13,7 @@
         android:id="@+id/seekbar"
         style="@style/MySeekBar"
         android:thumbTint="@color/thumb_color"
+        android:progress="0"
 
         />
     <LinearLayout

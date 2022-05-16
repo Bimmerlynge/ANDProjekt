@@ -86,9 +86,9 @@ public class AddEntryFragment extends Fragment {
             try {
                 entryViewModel.addNewEntry(itemName, itemPrice, category);
                 clearFields();
-                Toast.makeText(getContext(), "Succesfully added new entry", Toast.LENGTH_SHORT).show();
+                Snackbar.make(getView(), "Succesfully added new entry", Snackbar.LENGTH_SHORT).show();
             } catch (IllegalArgumentException e){
-                Toast.makeText(getContext(), "Make sure to fill in proper values", Toast.LENGTH_SHORT).show();
+                Snackbar.make(getView(), "Make sure to fill in proper values", Snackbar.LENGTH_SHORT).show();
             }
 
         });

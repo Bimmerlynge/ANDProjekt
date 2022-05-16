@@ -13,20 +13,9 @@ public class Group {
     private int yearMonth;
     private double budgetPerUser;
     private double remain;
-    private double remainLastMonth;
     private List<User> members;
-    //private List<Entry> entries;
 
     public Group(){}
-
-
-//    public List<Entry> getEntries() {
-//        return entries;
-//    }
-
-//    public void setEntries(List<Entry> entries) {
-//        this.entries = entries;
-//    }
 
     public Group(String name, double budgetPerUser, int yearMonth) {
         this.name = name;
@@ -36,21 +25,19 @@ public class Group {
         this.yearMonth = yearMonth;
     }
 
-    public Group(String name, String id, double budgetPerUser, double remain, List<User> members, int yearMonth) {
-        this.name = name;
-        this.id = id;
-        this.budgetPerUser = budgetPerUser;
-        this.remain = remain;
-        this.members = members;
-        this.yearMonth = yearMonth;
-
-    }
+//    public Group(String name, String id, double budgetPerUser, double remain, List<User> members, int yearMonth) {
+//        this.name = name;
+//        this.id = id;
+//        this.budgetPerUser = budgetPerUser;
+//        this.remain = remain;
+//        this.members = members;
+//        this.yearMonth = yearMonth;
+//
+//    }
     public void newMonth(){
-        remainLastMonth = remain;
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dFormat = new SimpleDateFormat("yyyyMM");
         String string = dFormat.format(date);
-
         yearMonth = Integer.parseInt(string);
         for (User member : members) {
             member.setRemain(budgetPerUser);
@@ -62,9 +49,9 @@ public class Group {
         return yearMonth;
     }
 
-    public void setYearMonth(int yearMonth) {
-        this.yearMonth = yearMonth;
-    }
+//    public void setYearMonth(int yearMonth) {
+//        this.yearMonth = yearMonth;
+//    }
 
     public void setId(String id) {
         this.id = id;
@@ -74,17 +61,17 @@ public class Group {
         this.remain = remain;
     }
 
-    public void setBudgetPerUser(double budgetPerUser) {
-        this.budgetPerUser = budgetPerUser;
-    }
+//    public void setBudgetPerUser(double budgetPerUser) {
+//        this.budgetPerUser = budgetPerUser;
+//    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setMembers(List<User> members) {
-        this.members = members;
-    }
+//    public void setMembers(List<User> members) {
+//        this.members = members;
+//    }
 
 
     public String getId() {
@@ -109,9 +96,9 @@ public class Group {
         members.add(user);
     }
 
-    public void removeMemberById(int id){
-        members.remove(id);
-    }
+//    public void removeMemberById(int id){
+//        members.remove(id);
+//    }
 
     public double getBudgetPerUser() {
         return budgetPerUser;
