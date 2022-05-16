@@ -20,9 +20,7 @@ public class EntryViewModel extends AndroidViewModel {
 
         super(application);
         entryRepository = EntryRepository.getInstance();
-
     }
-
 
     public void addNewEntry(String itemName, String itemPrice, String category) {
         if (!InputValidator.checkAddEntryInput(itemName, itemPrice))

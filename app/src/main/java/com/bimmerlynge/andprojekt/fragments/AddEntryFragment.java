@@ -27,10 +27,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class AddEntryFragment extends Fragment {
     private View root;
     private Button addButton;
-    private Entry toAdd;
-    private GroupViewModel viewModel;
-    private EditText addItem;
-    private EditText addPrice;
+    private EditText addItem, addPrice;
     private RadioGroup rg1, rg2;
     private boolean isChecking = true;
     private int checkedId = R.id.radioButton8;
@@ -46,7 +43,6 @@ public class AddEntryFragment extends Fragment {
     }
 
     private void init(){
-        viewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
         entryViewModel = new ViewModelProvider(requireActivity()).get(EntryViewModel.class);
         setUpRadioGroups();
         setupAddEntryButton();
@@ -102,9 +98,5 @@ public class AddEntryFragment extends Fragment {
         addItem.setText("");
         addPrice.setText(null);
         addPrice.onEditorAction(EditorInfo.IME_ACTION_DONE);
-
     }
-
-
-
 }
