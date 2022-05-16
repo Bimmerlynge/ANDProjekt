@@ -19,12 +19,14 @@ import com.bimmerlynge.andprojekt.R;
 
 import com.bimmerlynge.andprojekt.databinding.FragmentDashboardBinding;
 import com.bimmerlynge.andprojekt.adapters.EntryAdapter;
+import com.bimmerlynge.andprojekt.viewModels.EntryViewModel;
 import com.bimmerlynge.andprojekt.viewModels.GroupViewModel;
 
 public class DashboardFragment extends Fragment {
-
+    private View root;
     private FragmentDashboardBinding binding;
     private GroupViewModel viewModel;
+    private EntryViewModel entryViewModel;
     private RecyclerView entries;
     private TextView title;
     private Button addEntry;
@@ -32,39 +34,39 @@ public class DashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        viewModel =
-                new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        root = binding.getRoot();
+        setupViews();
+        init();
 
-        //checkIfHasGroup();
+        return root;
+    }
+
+    private void init() {
+        viewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
+        entryViewModel = new ViewModelProvider(requireActivity()).get(EntryViewModel.class);
+        checkIfHasGroup();
+        setupRecyclerView();
+        setupAddEntryButton();
+    }
+
+    private void setupViews() {
         entries = root.findViewById(R.id.rViewDashEntries);
         title = root.findViewById(R.id.welcomeLabel);
         addEntry = root.findViewById(R.id.dashBord_addEntry);
+    }
 
-        addEntry.setOnClickListener(view -> {
-            //Navigation.findNavController(getView()).navigate(R.id.action_navigation_dashboard_to_addEntryFragment);
-            NavHostFragment.findNavController(DashboardFragment.this).navigate(R.id.action_navigation_dashboard_to_addEntryFragment);
-        });
-
+    private void setupRecyclerView() {
         entries.setLayoutManager(new LinearLayoutManager(root.getContext()));
         entries.hasFixedSize();
-
         adapter = new EntryAdapter();
         entries.setAdapter(adapter);
+    }
 
-        checkIfHasGroup();
-
-
-
-
-
-
-
-
-
-
-        return root;
+    private void setupAddEntryButton() {
+        addEntry.setOnClickListener(view -> {
+            NavHostFragment.findNavController(DashboardFragment.this).navigate(R.id.action_navigation_dashboard_to_addEntryFragment);
+        });
     }
 
     @Override
@@ -74,13 +76,13 @@ public class DashboardFragment extends Fragment {
     }
 
     private void checkIfHasGroup() {
-        if (viewModel.getGroup() != null)
-            viewModel.getEntriesByUser().observe(getViewLifecycleOwner(), entries -> {
-                adapter.setEntries(entries);
-            });
-        else {Toast.makeText(getContext(), "No group detected", Toast.LENGTH_LONG).show();
+        if (viewModel.getGroup() != null) {
             addEntry.setEnabled(false);
-            title.setText("Must be part of a group to use this page");}
+            viewModel.getCurrentGroup().observe(getViewLifecycleOwner(), group -> {
+                viewModel.setCurrentGroup(group);
+                addEntry.setEnabled(false);
+            });
+        }
     }
 
 }
