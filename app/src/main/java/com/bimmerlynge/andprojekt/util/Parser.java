@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.bimmerlynge.andprojekt.R;
 import com.bimmerlynge.andprojekt.model.Entry;
+import com.bimmerlynge.andprojekt.model.Group;
 import com.github.mikephil.charting.data.BarEntry;
 
 import java.text.ParseException;
@@ -138,5 +139,22 @@ public class Parser {
         }
 
         return toReturn;
+    }
+
+    public static int getRemainIcon(Group group, double remain) {
+        double max = group.getBudgetPerUser();
+        double r = remain/max;
+        if (remain == max)
+            return R.drawable.ic_budget_full;
+        else if (r < 1 && r >= 0.75)
+            return R.drawable.ic_budget_partial_full;
+        else if (r < 0.75 && r > 0.5)
+            return R.drawable.ic_budget_half;
+        else if (r < 0.5 && r > 0.25)
+            return R.drawable.ic_budget_near_empty;
+        else if (r < 0.25 && r > 0)
+            return R.drawable.ic_budget_danger_close;
+        else
+            return R.drawable.ic_budget_empty;
     }
 }

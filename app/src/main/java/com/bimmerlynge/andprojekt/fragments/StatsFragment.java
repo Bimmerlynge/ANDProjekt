@@ -35,17 +35,13 @@ import java.util.List;
 public class StatsFragment extends Fragment {
     private View root;
     private EntryViewModel entryViewModel;
-    GroupViewModel viewModel;
-    SeekBar seekBar;
-    TextView title;
-    BarChart barChart;
-    BarData barData;
-    BarDataSet barDataSet;
+    private SeekBar seekBar;
+    private TextView title;
+    private BarChart barChart;
+    private BarData barData;
+    private BarDataSet barDataSet;
     private ArrayList<BarEntry> barEntries;
     private List<String> labels;
-    private final int[] colors = {Color.rgb(255, 50, 50), Color.rgb(60, 245, 60), Color.rgb(125, 125, 250)
-                                    , Color.rgb(255, 207, 229), Color.rgb(255, 255, 50), Color.rgb(250, 250, 250)
-                                    , Color.rgb(140, 157, 207)};
 
     @Nullable
     @Override
@@ -93,7 +89,9 @@ public class StatsFragment extends Fragment {
 
 
     private void initDataLoad(){
-        entryViewModel.getGroupEntriesThisMonth().observe(getViewLifecycleOwner(), this::updateChartData);
+        entryViewModel.getGroupEntriesThisMonth().observe(getViewLifecycleOwner(), list -> {
+            updateChartData(list);
+        });
     }
 
     private void updateChartData(List<Entry> list){

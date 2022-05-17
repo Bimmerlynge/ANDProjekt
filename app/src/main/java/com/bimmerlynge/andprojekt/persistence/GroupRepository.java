@@ -1,19 +1,14 @@
 package com.bimmerlynge.andprojekt.persistence;
 
-import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.bimmerlynge.andprojekt.model.Entry;
 import com.bimmerlynge.andprojekt.model.Group;
 import com.bimmerlynge.andprojekt.model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,9 +16,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GroupRepository {
@@ -53,13 +45,12 @@ public class GroupRepository {
 
     public LiveData<Group> getGroupUpdates(){
         MutableLiveData<Group> toReturn = new MutableLiveData<>();
-        //final Group[] buffer = new Group[1];
         DatabaseReference ref = database.getReference().child("Groups").child(currentGroup.getId());
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Group group = snapshot.getValue(Group.class);
-                updateGroup(group);
+                group.updateGroupRemain();
                 toReturn.postValue(group);
             }
 
@@ -83,8 +74,8 @@ public class GroupRepository {
 
                     if (data != null){
                         data.setId(child.getKey());
-                        updateGroup(data);}
-                    if (checkIfUserIsInGroup(userId, data))
+                        data.updateGroupRemain();}
+                    if (data.checkGroupHasUserById(userId))
                         buffer[0] = data;
 
                 }
@@ -101,23 +92,6 @@ public class GroupRepository {
     }
 
 
-    private void updateGroup(Group group){
-        int remain = 0;
-        for (User member : group.getMembers()) {
-            remain += member.getRemain();
-        }
-        group.setRemain(remain);
-    }
-
-    private boolean checkIfUserIsInGroup(String userId, Group group){
-        List<User> members = group.getMembers();
-        for (User member : members) {
-            if (userId.equals(member.getId()))
-                return true;
-        }
-        return false;
-    }
-
     public void createGroup(Group group){
         DatabaseReference ref = database.getReference().child("Groups");
         ref.push().setValue(group);
@@ -126,7 +100,7 @@ public class GroupRepository {
     }
 
     public void updateGroupData(Group group) {
-        updateGroup(group);
+        group.updateGroupRemain();
         DatabaseReference ref = database.getReference().child("Groups").child(group.getId());
         ref.setValue(group);
     }

@@ -25,15 +25,7 @@ public class Group {
         this.yearMonth = yearMonth;
     }
 
-//    public Group(String name, String id, double budgetPerUser, double remain, List<User> members, int yearMonth) {
-//        this.name = name;
-//        this.id = id;
-//        this.budgetPerUser = budgetPerUser;
-//        this.remain = remain;
-//        this.members = members;
-//        this.yearMonth = yearMonth;
-//
-//    }
+
     public void newMonth(){
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dFormat = new SimpleDateFormat("yyyyMM");
@@ -49,9 +41,6 @@ public class Group {
         return yearMonth;
     }
 
-//    public void setYearMonth(int yearMonth) {
-//        this.yearMonth = yearMonth;
-//    }
 
     public void setId(String id) {
         this.id = id;
@@ -61,17 +50,10 @@ public class Group {
         this.remain = remain;
     }
 
-//    public void setBudgetPerUser(double budgetPerUser) {
-//        this.budgetPerUser = budgetPerUser;
-//    }
 
     public void setName(String name) {
         this.name = name;
     }
-
-//    public void setMembers(List<User> members) {
-//        this.members = members;
-//    }
 
 
     public String getId() {
@@ -87,7 +69,6 @@ public class Group {
         return remain;
     }
 
-    
     public List<User> getMembers() {
         return members;
     }
@@ -96,12 +77,32 @@ public class Group {
         members.add(user);
     }
 
-//    public void removeMemberById(int id){
-//        members.remove(id);
-//    }
-
     public double getBudgetPerUser() {
         return budgetPerUser;
+    }
+
+    public boolean checkGroupHasUserById(String userId){
+        for (User member : members) {
+            if (userId.equals(member.getId()))
+                return true;
+        }
+        return false;
+    }
+
+    public void updateGroupRemain(){
+        int remain = 0;
+        for (User member : members) {
+            remain += member.getRemain();
+        }
+        this.remain = remain;
+    }
+
+    public User getUserById(String id){
+        for (User member : members) {
+            if (member.getId().equals(id))
+                return member;
+        }
+        return null;
     }
 
 

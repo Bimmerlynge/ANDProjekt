@@ -4,6 +4,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,10 +15,12 @@ import com.bimmerlynge.andprojekt.model.User;
 import com.bimmerlynge.andprojekt.util.Parser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
@@ -36,15 +39,17 @@ public class EntryRepository {
     private Group currentGroup;
     private FirebaseUser currentUser;
 
-    private EntryRepository(){}
+    private EntryRepository() {
+    }
 
-    public static synchronized EntryRepository getInstance(){
+    //TODO Refactor this
+    public static synchronized EntryRepository getInstance() {
         if (instance == null)
             instance = new EntryRepository();
         return instance;
     }
 
-    public void init(){
+    public void init() {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance("https://andprojekt-2f098-default-rtdb.europe-west1.firebasedatabase.app");
         //entries = new EntryLiveData(ref); // For later improvements
@@ -52,52 +57,46 @@ public class EntryRepository {
 
     }
 
-
-    public void addNewEntry(Entry entry){
-
-        DatabaseReference ref = database.getReference().child("Entries").child(currentGroup.getId()).child(currentUser.getUid());
-        ref.push().setValue(entry);
-        User user = userById(currentUser.getUid(),currentGroup);
-        user.updateRemain(entry.getItemPrice());
-        DatabaseReference ref2 = database.getReference().child("Groups").child(currentGroup.getId());
-        ref2.setValue(currentGroup);
-
-    }
-
-    private User userById(String id, Group group){
-        for (User member : group.getMembers()) {
-            if (member.getId().equals(id))
-                return member;
-        }
-        return null;
-    }
     public void setGroup(Group group) {
         currentGroup = group;
     }
 
-    public LiveData<List<Entry>> getThisMonthsEntries(){
+
+    public void addNewEntry(Entry entry) {
+
+        DatabaseReference ref = database.getReference().child("Entries").child(currentGroup.getId()).child(currentUser.getUid());
+        ref.push().setValue(entry);
+        User user = currentGroup.getUserById(currentUser.getUid());
+        user.updateRemain(entry.getItemPrice());
+        DatabaseReference ref2 = database.getReference().child("Groups").child(currentGroup.getId());
+        ref2.setValue(currentGroup);
+    }
+
+    public LiveData<List<Entry>> getThisMonthsEntries() {
         MutableLiveData<List<Entry>> liveData = new MutableLiveData<>();
         List<Entry> list = new ArrayList<>();
         DatabaseReference ref = database.getReference().child("Entries").child(currentGroup.getId()).child(currentUser.getUid());
-        ref.orderByChild("date").startAt(Parser.getCurrentYearMonth()).endAt(Parser.getCurrentYearMonth()+"\uf8ff")
+        ref.orderByChild("date").startAt(Parser.getCurrentYearMonth()).endAt(Parser.getCurrentYearMonth() + "\uf8ff")
                 .addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot child : snapshot.getChildren()) {
-                    Entry entry = child.getValue(Entry.class);
-                    list.add(entry);
-                }
-                Collections.reverse(list);
-                liveData.postValue(list);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot child : snapshot.getChildren()) {
+                            Entry entry = child.getValue(Entry.class);
+                            list.add(entry);
+                        }
+                        Collections.reverse(list);
+                        liveData.postValue(list);
+                    }
 
-            }
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
         return liveData;
     }
-    public LiveData<List<Entry>> getGroupEntriesThisMonth(){
+
+        public LiveData<List<Entry>> getGroupEntriesThisMonth(){
         MutableLiveData<List<Entry>> liveData = new MutableLiveData<>();
         List<Entry> list = new ArrayList<>();
         DatabaseReference ref = database.getReference().child("Entries").child(currentGroup.getId());
@@ -122,6 +121,44 @@ public class EntryRepository {
         });
         return liveData;
     }
+//    public LiveData<List<Entry>> getGroupEntriesThisMonth() {
+//        MutableLiveData<List<Entry>> liveData = new MutableLiveData<>();
+//        for (User member : currentGroup.getMembers()) {
+//            DatabaseReference ref = database.getReference().child("Entries").child(currentGroup.getId()).child(member.getId());
+//            ref.orderByChild("date").startAt(Parser.getLastYearMonth()).endAt(Parser.getLastYearMonth());
+//            ref.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    Log.i("mig", "hvad får vi: " + snapshot);
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+//        }
+
+//        Log.i("mig", "query for: " + Parser.getLastYearMonth());
+//        MutableLiveData<List<Entry>> liveData = new MutableLiveData<>();
+//        List<Entry> list = new ArrayList<>();
+//        DatabaseReference ref = database.getReference().child("Entries").child(currentGroup.getId());
+//        Query query = ref.orderByChild("date").startAt(Parser.getCurrentYearMonth());
+//        query.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                Log.i("mig", "hvad får vi: " + snapshot);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+//        return liveData;
+//    }
+
 
     public LiveData<List<Entry>> getGroupEntriesLastMonth() {
         MutableLiveData<List<Entry>> liveData = new MutableLiveData<>();
@@ -173,6 +210,5 @@ public class EntryRepository {
 
         return liveData;
     }
-
 
 }

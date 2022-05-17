@@ -11,7 +11,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/* For future update.
+ *
+ */
 public class EntryLiveData extends LiveData<List<Entry>> {
 
     private final ValueEventListener listener = new ValueEventListener() {

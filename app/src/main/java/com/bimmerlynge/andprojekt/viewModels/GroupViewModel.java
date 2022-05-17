@@ -36,9 +36,7 @@ public class GroupViewModel extends AndroidViewModel {
             String userId = userRepository.getCurrentUser().getValue().getUid();
             groupRepository.init(userId);
             entryRepository.init();
-        } catch (NullPointerException e){
-
-        }
+        } catch (NullPointerException ignored){}
 
 
 
