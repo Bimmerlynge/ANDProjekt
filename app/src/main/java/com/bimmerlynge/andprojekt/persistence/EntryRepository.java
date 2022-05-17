@@ -79,7 +79,8 @@ public class EntryRepository {
         MutableLiveData<List<Entry>> liveData = new MutableLiveData<>();
         List<Entry> list = new ArrayList<>();
         DatabaseReference ref = database.getReference().child("Entries").child(currentGroup.getId()).child(currentUser.getUid());
-        ref.orderByChild("date").startAt(Parser.getCurrentYearMonth()).endAt(Parser.getCurrentYearMonth()+"\uf8ff").addValueEventListener(new ValueEventListener() {
+        ref.orderByChild("date").startAt(Parser.getCurrentYearMonth()).endAt(Parser.getCurrentYearMonth()+"\uf8ff")
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot child : snapshot.getChildren()) {
@@ -89,7 +90,6 @@ public class EntryRepository {
                 Collections.reverse(list);
                 liveData.postValue(list);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -108,7 +108,6 @@ public class EntryRepository {
                     for (DataSnapshot childChild : child.getChildren()) {
                         Entry entry = childChild.getValue(Entry.class);
                         if (entry.getDate().startsWith(Parser.getCurrentYearMonth())) {
-
                             list.add(entry);
                         }
                     }
@@ -138,7 +137,6 @@ public class EntryRepository {
                             list.add(entry);
                         }
                     }
-
                 }
                 liveData.postValue(list);
             }
@@ -150,7 +148,6 @@ public class EntryRepository {
         });
         return liveData;
     }
-
 
     public LiveData<List<Entry>> getAllEntries() {
         MutableLiveData<List<Entry>> liveData = new MutableLiveData<>();
@@ -164,7 +161,6 @@ public class EntryRepository {
                         Entry entry = childChild.getValue(Entry.class);
                         list.add(entry);
                     }
-
                 }
                 liveData.postValue(list);
             }

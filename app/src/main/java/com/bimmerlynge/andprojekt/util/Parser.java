@@ -1,10 +1,13 @@
 package com.bimmerlynge.andprojekt.util;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.bimmerlynge.andprojekt.R;
 import com.bimmerlynge.andprojekt.model.Entry;
 import com.github.mikephil.charting.data.BarEntry;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -89,5 +92,51 @@ public class Parser {
             barEntries.add(new BarEntry((float) i, item));
         }
         return barEntries;
+    }
+
+    public static String categoryToProperResource(Context context, String category){
+        String formatted = "";
+        switch (category){
+            case "Meat":
+                formatted = context.getString(R.string.meat);
+                break;
+            case "Veggies":
+                formatted = context.getString(R.string.veggies);
+                break;
+            case "Fruit":
+                formatted = context.getString(R.string.fruit);
+                break;
+            case "Deli":
+                formatted = context.getString(R.string.deli);
+                break;
+            case "Grains":
+                formatted = context.getString(R.string.grains);
+                break;
+            case "Dairy":
+                formatted = context.getString(R.string.dairy);
+                break;
+            case "Frozen":
+                formatted = context.getString(R.string.frozen);
+                break;
+            case "Other":
+                formatted = context.getString(R.string.other);
+                break;
+            default:
+        }
+        return formatted;
+    }
+
+    public static String yearMonthDayToDayMonthYear(String date){
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format2= new SimpleDateFormat("dd-MM-yy");
+        String toReturn = "";
+        try {
+            Date d = format1.parse(date);
+            toReturn = format2.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return toReturn;
     }
 }
