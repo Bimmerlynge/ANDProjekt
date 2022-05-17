@@ -7,7 +7,7 @@ https://youtu.be/C6J34UelOfs
 
 Requirements:
 
-1. ~~~Som en bruger vil jeg oprette en gruppe i systemet, for at forbinde beboeres madforbrug i en husstand med hinanden.
+1. ~~Som en bruger vil jeg oprette en gruppe i systemet, for at forbinde beboeres madforbrug i en husstand med hinanden.~~
 2. Som en bruger vil jeg administrere medlemmerne i min gruppe, for at organisere hvem der er en del af husstanden. (Man kan kun tilføje)
 3. ~~Som en bruger vil jeg logge ind i systemet, for at kunne blive identificeret blandt andre brugere.
 4. ~~Som en bruger vil jeg tilføje/fjerne enkelte varer eller hele boner til en forbrugsoversigt, for at dokumentere mit løbende forbrug.
