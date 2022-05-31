@@ -1,5 +1,8 @@
 # ANDProjekt
 
+Author: Mathias Strands Lynge-Jacobsen
+
+
 Formålet med dette projekt er at lave en app til folk der bor sammen med andre mennesker, og har brug for en måde at holde styr på deres mad budget. Idéen bygger på at man skal kunne tjekke op på hvor mange penge de forskellige medlemmer har tilbage i løbet af en måned, så man ikke er afhængig af at skulle rådspørge hinanden om hvor stort et beløb man har til rådighed. Appen vil kun reelt virke hvis de forskellige deltagere tager ansvaret for at indtaste de penge de har brugt på mad i løbet af måneden. Jeg er selv en hat til at holde styr på hvor mange penge jeg egentlig har brugt af mit mad forbrug, så det at have en app jeg kan notere købte varer ned i, og automatisk udregne rest osv. vil kunne gøre det lettere for min kæreste at få et svar fra hvor mange penge jeg har til rådighed.
  
 Master branch har final commit inden aflevering
