@@ -42,7 +42,10 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     public void onBindViewHolder(@NonNull MemberAdapter.ViewHolder holder, int position) {
         holder.name.setText(members.get(position).getName()+":");
         holder.remain.setImageResource(Parser.getRemainIcon(currentGroup, members.get(position).getRemain()));
-        holder.numRemain.setText(members.get(position).getRemain()+"");
+
+        double rem = members.get(position).getRemain();
+        String formatted = String.format("%.2f", rem);
+        holder.numRemain.setText(formatted);
     }
 
 

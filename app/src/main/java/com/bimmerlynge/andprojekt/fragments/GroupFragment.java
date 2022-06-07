@@ -77,7 +77,9 @@ public class GroupFragment extends Fragment {
     private void setRViewData() {
         groupViewModel.getGroupUpdates().observe(getViewLifecycleOwner(), group -> {
             adapter.setMembers(group);
-            groupRemainder.setText(group.getRemain()+"");
+            double rem = group.getRemain();
+            String formatted = String.format("%.2f", rem);
+            groupRemainder.setText(formatted);
         });
     }
 

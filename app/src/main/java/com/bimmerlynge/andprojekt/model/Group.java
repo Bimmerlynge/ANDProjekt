@@ -90,7 +90,7 @@ public class Group {
     }
 
     public void updateGroupRemain(){
-        int remain = 0;
+        double remain = 0;
         for (User member : members) {
             remain += member.getRemain();
         }
